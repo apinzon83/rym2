@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Personajes de Rick y Morty</h1>
+    <p>
+        En esta pequeña app consumo el api rest de https://rickandmortyapi.com/.
+    </p>
+</div>
+<div class="row">
+    <div>
+        <ul class="col-12">
+            @foreach (rym.Models.c_results personaje in Model.results)
+            {
+                <li class="col-sm-4">
+                    <div class="card">
+                        <div class="form-group">
+                            <img class="card-img-top" src="@personaje.image" alt="imagen">
+                            <h5 class="card-title">
+                                <a href='@Url.Action("consulta_personaje", "Home", new { id = @personaje.id, pagAct = @ViewBag.pagAct })'
+                                   class="card-link">@personaje.name</a>
+                            </h5>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="species">Especie</label>
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" id="species" name="species"
+                                        type="text" value="@personaje.species" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="status">Estatus</label>
+                            <div class="col-md-10">
+                                <input class="form-control text-box single-line" id="status" name="status"
+                                        type="text" value="@personaje.status" readonly>
+                            </div>
+                        </div>
+                    </div>
+</li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <label>Pag. @ViewBag.pagAct de @Model.info.pages</label>
+    @if (Model.info.prev != null)
+    { <a href='@Url.Action("Index", "Home", new { id = @ViewBag.pagAnt })'>Anterior</a> }
+    else
+    { <label>Pag. @ViewBag.pagAct de @Model.info.pages</label> }
+    <a href='@Url.Action("Index", "Home", new { id = @ViewBag.pagSig })'>Siguiente</a>
+</div>

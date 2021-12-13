@@ -1,0 +1,64 @@
+﻿@model rym.Models.c_results
+
+@{
+    ViewBag.Title = "detalle_personaje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+
+    <h4>Detalle del Personaje</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <img src="@Model.image" alt="imagen" style="border-radius:20px;">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="name">Nombre</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="name" name="name" type="text"
+                   value="@Model.name" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="species">Especie</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="species" name="species" type="text"
+                   value="@Model.species" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="gender">Genero</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="gender" name="gender" type="text"
+                   value="@Model.gender" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="origin">Origen</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="origin" name="origin" type="text"
+                   value="@Model.origin.name" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="status">Estatus</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="status" name="status" type="text"
+                   value="@Model.status" readonly>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @Html.ActionLink("Regresar a la lista", "Index", new { id = @ViewBag.pagAct })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
